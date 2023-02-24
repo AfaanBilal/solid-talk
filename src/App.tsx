@@ -7,9 +7,9 @@
 
 import { Component, createSignal, createEffect, createResource, For } from "solid-js";
 
-const fetchUsers = async () => (await fetch("https://randomuser.me/api/?results=15&seed=solid")).json();
+const fetchUsers = async () => (await fetch("https://randomuser.me/api/?results=10&seed=solid-talk")).json();
 
-const me = "1a319ee3-d18f-4ad2-862f-ba801a2e2962";
+const me = "017d8d9f-0b54-4aeb-8238-0556c4feb642";
 
 type User = {
     login: {
@@ -32,7 +32,7 @@ type Message = {
 
 const sampleMessages: Message[] = [
     {
-        userUuid: "0d490c4b-9177-45c6-a0ad-451359724bd0",
+        userUuid: "7c79635a-2b4e-411f-90ba-ff0ee70c22fd",
         text: "Hello, world!",
         ts: new Date(),
     },
@@ -47,7 +47,7 @@ const sampleMessages: Message[] = [
         ts: new Date(),
     },
     {
-        userUuid: "0d490c4b-9177-45c6-a0ad-451359724bd0",
+        userUuid: "7c79635a-2b4e-411f-90ba-ff0ee70c22fd",
         text: "Goodbye, world!",
         ts: new Date(),
     },
@@ -73,7 +73,12 @@ const App: Component = () => {
     return (
         <div class="h-full flex text-white font-mono">
             <aside class="h-screen sticky top-0 overflow-hidden hover:overflow-auto border-r border-gray-600">
-                <div class="border-b border-gray-600 p-8 text-5xl font-extrabold">#solid-talk</div>
+                <div class="border-b border-gray-600 p-8 text-5xl font-extrabold">
+                    #solid-talk
+                    <div class="text-sm mt-4 text-right">
+                        by <a href="https://afaan.dev" target="_blank" rel="noopener" class="text-cyan-600">Afaan Bilal</a>
+                    </div>
+                </div>
                 <div class="flex-1 flex flex-col">
                     <h2 class="py-4 text-center text-lg text-slate-500 border-b border-slate-800">Who else is here?</h2>
                     <div class="flex-1">
@@ -116,7 +121,7 @@ const App: Component = () => {
                 <div class="w-full">
                     <input
                         type="text"
-                        class="w-full py-2 px-4 bg-gray-700 h-16 text-xl text-slate-300 font-light focus:outline-none focus:bg-slate-700 placeholder:text-gray-500"
+                        class="w-full h-16 py-2 px-4 bg-gray-700 text-xl text-slate-300 font-light focus:outline-none focus:bg-slate-700 placeholder:text-gray-500"
                         placeholder="Enter your message here..."
                         value={msg()}
                         onKeyUp={keyUp}
