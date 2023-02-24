@@ -1,34 +1,19 @@
-## Usage
+#solid-talk
+===========
 
-Those templates dependencies are maintained via [pnpm](https://pnpm.io) via `pnpm up -Lri`.
+Author: **[Afaan Bilal](https://afaan.dev)**
 
-This is the reason you see a `pnpm-lock.yaml`. That being said, any package manager will work. This file can be safely be removed once you clone a template.
+Link: **[#solid-talk](https://afaan.dev/solid-talk)**
 
-```bash
-$ npm install # or pnpm install or yarn install
-```
+## Introduction
+**#solid-talk** is a simple chatroom built using solid-js.
 
-### Learn more on the [Solid Website](https://solidjs.com) and come chat with us on our [Discord](https://discord.com/invite/solidjs)
+## Contributing
+All contributions are welcome. Please create an issue first for any feature request
+or bug. Then fork the repository, create a branch and make any changes to fix the bug
+or add the feature and create a pull request. That's it!
+Thanks!
 
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm dev` or `npm start`
-
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.<br>
-
-### `npm run build`
-
-Builds the app for production to the `dist` folder.<br>
-It correctly bundles Solid in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
-
-## Deployment
-
-You can deploy the `dist` folder to any static host provider (netlify, surge, now, etc.)
+## License
+**#solid-talk** is released under the MIT License.
+Check out the full license [here](LICENSE).
