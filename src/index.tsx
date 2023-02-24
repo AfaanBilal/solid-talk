@@ -1,5 +1,5 @@
 /**
- * #solid-tak
+ * #solid-talk
  *
  * @author Afaan Bilal https://afaan.dev
  * @link   https://afaan.dev/solid-talk

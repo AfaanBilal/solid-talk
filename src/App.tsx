@@ -1,11 +1,11 @@
 /**
- * #solid-tak
+ * #solid-talk
  *
  * @author Afaan Bilal https://afaan.dev
  * @link   https://afaan.dev/solid-talk
  */
 
-import { Component, createSignal, createEffect, createResource, For } from "solid-js";
+import { Component, createSignal, createResource, For } from "solid-js";
 
 const fetchUsers = async () => (await fetch("https://randomuser.me/api/?results=10&seed=solid-talk")).json();
 
@@ -118,7 +118,8 @@ const App: Component = () => {
                         </For>
                     }
                 </div>
-                <div class="w-full">
+                <div class="w-full flex bg-gray-700 items-center p-2">
+                    {!userCall.loading && <img class="w-16 h-16 rounded-full" src={getUser(me).picture.large} />}
                     <input
                         type="text"
                         class="w-full h-16 py-2 px-4 bg-gray-700 text-xl text-slate-300 font-light focus:outline-none focus:bg-slate-700 placeholder:text-gray-500"
