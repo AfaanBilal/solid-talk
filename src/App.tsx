@@ -5,7 +5,7 @@
  * @link   https://afaan.dev/solid-talk
  */
 
-import { Component, createSignal, createResource, For, onMount, onCleanup, createEffect } from "solid-js";
+import { Component, createSignal, createResource, For, onMount, onCleanup, createEffect, Show } from "solid-js";
 import io from "socket.io-client";
 
 const fetchImaginaryUsers = async () => (await (await fetch("https://randomuser.me/api/?results=5&seed=solid-talk")).json()).results;
@@ -94,6 +94,9 @@ const App: Component = () => {
                     <h2 class="py-4 text-center text-lg text-slate-500 border-b border-slate-800">Who else is here?</h2>
                     <div class="mb-8">
                         <h2 class="mt-4 py-2 border-b border-slate-700 text-slate-400 text-center text-2xl">#real</h2>
+                        <Show when={!isConnected()}>
+                            <div class="flex-1 grid place-items-center text-xl mt-4 text-slate-500">Join to connect</div>
+                        </Show>
                         <For each={users()}>
                             {u =>
                                 <div class="flex px-6 py-4 border-b border-slate-600 gap-4">
@@ -139,8 +142,16 @@ const App: Component = () => {
                     </div>
                     <div class="px-4">{isConnected() ? "🟢 Connected" : "🔴 Disconnected"}</div>
                 </div>
-                <div class="flex-1 flex flex-col justify-end">
-                    {!imaginaryUsers.loading &&
+                <Show when={!isConnected()}>
+                    <div class="flex-1 grid place-items-center text-xl text-slate-500">
+                        <div class="text-center">
+                            Please enter a name above and click <span class="text-gray-400 font-extrabold">Join</span> to connect.
+                            <div class="text-zinc-600 mt-2">You can also set your avatar to an image URL.</div>
+                        </div>
+                    </div>
+                </Show>
+                <Show when={isConnected()}>
+                    <div class="flex-1 flex flex-col justify-end">
                         <For each={messages()}>
                             {m =>
                                 <div class={`flex ${m.userId === me() ? "flex-row-reverse" : "bg-gray-900"} px-4 py-6 items-center border-t border-b border-slate-800`}>
@@ -149,24 +160,25 @@ const App: Component = () => {
                                         src={getUser(m.userId)?.avatar || defaultAvatar}
                                     />
                                     <div class="mx-4 text-lg">
+                                        <div class="text-sm text-cyan-700">{getUser(m.userId)?.name}</div>
                                         <div class="text-slate-300">{m.text}</div>
                                         <div class={`text-xs text-slate-500 ${m.userId === me() ? "text-right" : ""}`}>{new Date(m.ts).toLocaleString("en-US", { hour: "numeric", minute: "numeric", hour12: true })}</div>
                                     </div>
                                 </div>
                             }
                         </For>
-                    }
-                </div>
-                <div class="w-full flex bg-gray-700 items-center p-2">
-                    {!imaginaryUsers.loading && <img class="w-16 h-16 rounded-full" src={userAvatar() || defaultAvatar} />}
-                    <input
-                        type="text"
-                        class="w-full h-16 py-2 px-4 bg-gray-700 text-xl text-slate-300 font-light focus:outline-none focus:bg-slate-700 placeholder:text-gray-500"
-                        placeholder="Enter your message here..."
-                        value={msg()}
-                        onKeyUp={keyUp}
-                    />
-                </div>
+                    </div>
+                    <div class="w-full flex bg-gray-700 items-center p-2">
+                        {!imaginaryUsers.loading && <img class="w-16 h-16 rounded-full" src={userAvatar() || defaultAvatar} />}
+                        <input
+                            type="text"
+                            class="w-full h-16 py-2 px-4 bg-gray-700 text-xl text-slate-300 font-light focus:outline-none focus:bg-slate-700 placeholder:text-gray-500"
+                            placeholder="Enter your message here..."
+                            value={msg()}
+                            onKeyUp={keyUp}
+                        />
+                    </div>
+                </Show>
             </div>
         </div>
     );
