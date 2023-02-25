@@ -23,7 +23,10 @@ type Message = {
     ts: Date;
 };
 
-const socket = io("https://solid-talk-server.onrender.com", { autoConnect: false });
+// Warm-up
+fetch("https://solid-talk.amx.gg");
+
+const socket = io("https://solid-talk.amx.gg/", { autoConnect: false });
 
 const App: Component = () => {
     const [imaginaryUsers] = createResource("users", fetchImaginaryUsers);
