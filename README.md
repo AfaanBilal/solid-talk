@@ -6,7 +6,7 @@ Author: **[Afaan Bilal](https://afaan.dev)**
 Link: **[#solid-talk](https://afaan.dev/solid-talk)**
 
 ## Introduction
-**#solid-talk** is a simple chatroom built using solid-js.
+**#solid-talk** is a simple chatroom built using [solid-js](https://www.solidjs.com/).
 
 ## Contributing
 All contributions are welcome. Please create an issue first for any feature request
